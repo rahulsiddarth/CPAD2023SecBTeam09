@@ -39,14 +39,13 @@ export default function HomeScreen() {
                 {/* featured */}
                 <View className="mt-5">
                 {
-                    [featured, featured].map((category, index)=>{
+                    [featured, featured, featured].map((category, index)=>{
                         return (
                                 <FeaturedRow 
-                                    key={category.id}
-                                    id={category.id}
-                                    title={category.name}
-                                    restaurants={category?.restaurants}
+                                    key={index}
+                                    title={category.title}
                                     description={category.description}
+                                    restaurants={category?.restaurants}
                                     featuredCategory={category.type}
                                 />
                         )
