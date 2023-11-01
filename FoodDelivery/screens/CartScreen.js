@@ -83,9 +83,7 @@ export default function CartScreen() {
                         onPress={() => navigation.navigate('OrderPreparing')}
                         style = {{backgroundColor: themeColors.bgColor(1)}} 
                         className = "p-3 rounded-full">
-                        <Text className = "text-white text-center font-bold text-lg">
-                            Place Order
-                        </Text>
+                        <Text className = "text-white text-center font-bold text-lg">Place Order</Text>
                     </TouchableOpacity>
             </View>
         </View>
