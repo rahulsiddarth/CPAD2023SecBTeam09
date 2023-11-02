@@ -1,13 +1,14 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { featured } from '../constants'
+import { useSelector } from 'react-redux';
+import { selectRestaurant } from '../slices/restaurantSlice';
 import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '../theme';
 import MapView, { Marker } from 'react-native-maps';
 import * as Icon from "react-native-feather";
 
 export default function DeliveryScreen() {
-    const restaurant = featured.restaurants[0];
+    const restaurant = useSelector(selectRestaurant);
     const navigation = useNavigation();
     return (
         <View className="flex-1" >
