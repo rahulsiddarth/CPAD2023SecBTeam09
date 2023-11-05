@@ -42,11 +42,11 @@ export const featured = {
             name: 'Papa Johns',
             image: require('../assets/images/papaJohns.jpg'),
             description: 'Hot and spicy pizzas',
-            lng: -85.5324269,
-            lat: 38.2145602,
+            lng: 77.7155193,
+            lat: 12.9789875,
             address: '434 second street',
             stars: 4,
-            reviews: '4.4k',
+            reviews: '4.5k',
             category: 'Fast Food',
             dishes: [
                 {
