@@ -16,7 +16,7 @@ export default function ResturantCard({ item }) {
 
         <View className="px-3 pb-4 space-y-2">
 
-          <Text className="text-lg font-bold pt-2">{item.title}</Text>
+          <Text className="text-lg font-bold pt-2">{item.name}</Text>
           <View className="flex-row items-center space-x-1">
             <Image source={require('../assets/images/papaJohns.jpg')} className="h-4 w-4" />
             <Text className="text-xs">

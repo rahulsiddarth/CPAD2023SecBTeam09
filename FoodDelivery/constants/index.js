@@ -39,15 +39,15 @@ export const featured = {
     restaurants: [
         {
             id: 1,
-            name: 'Papa Johns',
+            name: 'Cafe BERP',
             image: require('../assets/images/papaJohns.jpg'),
-            description: 'Hot and spicy pizzas',
+            description: 'Hot and spicy food',
             lng: 77.7155193,
             lat: 12.9789875,
-            address: '434 second street',
+            address: 'SAP Labs, BLR',
             stars: 4,
             reviews: '4.5k',
-            category: 'Fast Food',
+            category: 'Multi cuisine',
             dishes: [
                 {
                    id: 1,
