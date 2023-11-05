@@ -147,3 +147,20 @@ export const featured = {
         }
     ]
 }
+
+const deliveryPartners = [
+    "Eleanor Smith",
+    "Lucas Johnson",
+    "Sophia Anderson",
+    "Benjamin Brown",
+    "Olivia Davis",
+    "Henry Wilson",
+    "Charlotte Taylor",
+    "Liam Clark",
+    "Ava Martinez",
+    "Noah Jones"
+  ];
+
+export function getDeliveryPartner() {
+    return deliveryPartners[(Math.floor(Math.random() * deliveryPartners.length))];
+}

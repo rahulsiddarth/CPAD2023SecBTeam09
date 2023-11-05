@@ -7,6 +7,7 @@ import { themeColors } from '../theme';
 import MapView, { Marker } from 'react-native-maps';
 import * as Icon from "react-native-feather";
 import { emptyCart } from '../slices/cartSlice';
+import { getDeliveryPartner } from '../constants';
 
 export default function DeliveryScreen() {
     const restaurant = useSelector(selectRestaurant);
@@ -59,8 +60,8 @@ export default function DeliveryScreen() {
                     </View>
 
                     <View className="flex-1 ml-3">
-                        <Text className="text-lg font-bold text-white">Syed Noman</Text>
-                        <Text className="text-white font-semibold">Your Rider</Text>
+                        <Text className="text-lg font-bold text-white">{getDeliveryPartner()}</Text>
+                        <Text className="text-white font-semibold">Your Delivery Partner</Text>
                     </View>
                     <View className="flex-row items-center space-x-3 mr-3">
                         <TouchableOpacity className="bg-white p-2 rounded-full">
