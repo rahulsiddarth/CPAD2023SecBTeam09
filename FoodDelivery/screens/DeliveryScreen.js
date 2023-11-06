@@ -10,7 +10,7 @@ import { emptyCart } from '../slices/cartSlice';
 import { getDeliveryPartner } from '../constants';
 
 export default function DeliveryScreen() {
-    const restaurant = useSelector(selectRestaurant);
+    const restaurant = useSelector(state => selectRestaurant(state));
     const navigation = useNavigation();
     const dispatch = useDispatch(); 
 

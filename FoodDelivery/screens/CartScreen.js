@@ -8,10 +8,10 @@ import { selectRestaurant } from '../slices/restaurantSlice';
 import { removeFromCart, selectCartItems, selectCartTotal } from '../slices/cartSlice';
 
 export default function CartScreen() {
-        const restaurant = useSelector(selectRestaurant);
+        const restaurant = useSelector(state => selectRestaurant(state));
         const navigation = useNavigation();
-        const cartItems = useSelector(selectCartItems);
-        const cartTotal = useSelector(selectCartTotal);
+        const cartItems = useSelector(state => selectCartItems(state));
+        const cartTotal = useSelector(state => selectCartTotal(state));
         const [groupedItems, setGroupedItems] = useState({});
         const dispatch = useDispatch();
         const deliveryFee = cartTotal!=0 ? 2 : 0;
