@@ -1,12 +1,25 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import * as Icon from "react-native-feather";
 import { themeColors } from '../theme'
 import Categories from '../components/categories';
 import { featured } from '../constants';
 import FeaturedRow from '../components/featuredRow';
+import { auth } from '../firbase';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
+
+    const navigation = useNavigation();
+    const handleSignOut = () => {
+        auth
+            .signOut()
+            .then(() => {
+                navigation.replace("Login")
+            })
+            .catch(error => alert(error.message))
+    }
+
     return (
         <SafeAreaView className="bg-white">
             <StatusBar barStyle="dark-content" />
@@ -20,8 +33,16 @@ export default function HomeScreen() {
                         <Text className="text-gray-600">SAP Labs, BLR</Text>
                     </View>
                 </View>
-                <View style={{backgroundColor: themeColors.bgColor(1)}} className="p-3 rounded-full">
+                <View style={{ backgroundColor: themeColors.bgColor(1) }} className="p-3 rounded-full">
                     <Icon.Sliders height={20} width={20} strokeWidth="2.5" stroke="white" />
+                </View>
+                <View>
+                    <TouchableOpacity
+                        onPress={handleSignOut}
+                        style={{ backgroundColor: '#14b8a6', padding: 8, borderRadius: 10 }}
+                    >
+                        <Text style={{ color: 'white' }}>Sign out</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -32,27 +53,27 @@ export default function HomeScreen() {
                     paddingBottom: 50
                 }}
             >
-            
+
                 {/* categories */}
                 <Categories />
 
                 {/* featured */}
                 <View className="mt-5">
-                {
-                    [featured, featured, featured].map((category, index)=>{
-                        return (
-                                <FeaturedRow 
+                    {
+                        [featured, featured, featured].map((category, index) => {
+                            return (
+                                <FeaturedRow
                                     key={index}
                                     title={category.title}
                                     description={category.description}
                                     restaurants={category?.restaurants}
                                     featuredCategory={category.type}
                                 />
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
                 </View>
-            
+
             </ScrollView>
         </SafeAreaView>
     )
