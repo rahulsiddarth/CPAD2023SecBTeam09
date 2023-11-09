@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import * as Icon from "react-native-feather";
 import { themeColors } from '../theme'
@@ -7,9 +7,11 @@ import { featured } from '../constants';
 import FeaturedRow from '../components/featuredRow';
 import { auth } from '../firbase';
 import { useNavigation } from '@react-navigation/native';
+import { getFeaturedRestaurants } from '../api';
 
 export default function HomeScreen() {
 
+    const [featuredRestaurants, setFeaturedRestaurants] = useState([])
     const navigation = useNavigation();
     const handleSignOut = () => {
         auth
@@ -19,6 +21,16 @@ export default function HomeScreen() {
             })
             .catch(error => alert(error.message))
     }
+    useLayoutEffect(() => {
+        navigation.setOptions({headerShown: false})
+    }, [])
+
+    useEffect(()=>{
+        getFeaturedRestaurants().then(data=>{
+            // console.log("rahul", data)
+            setFeaturedRestaurants(data);
+        })
+    },[])
 
     return (
         <SafeAreaView className="bg-white">
@@ -60,14 +72,14 @@ export default function HomeScreen() {
                 {/* featured */}
                 <View className="mt-5">
                     {
-                        [featured, featured, featured].map((category, index) => {
+                        featuredRestaurants.map((item, index) => {
                             return (
                                 <FeaturedRow
                                     key={index}
-                                    title={category.title}
-                                    description={category.description}
-                                    restaurants={category?.restaurants}
-                                    featuredCategory={category.type}
+                                    title={item.name}
+                                    description={item.description}
+                                    restaurants={item?.restaurants}
+                                    featuredCategory={item.type}
                                 />
                             )
                         })

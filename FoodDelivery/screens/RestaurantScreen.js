@@ -7,6 +7,7 @@ import { themeColors } from '../theme';
 import DishRow from '../components/dishRow';
 import CartIcon from '../components/cartIcon';
 import { setRestaurant } from '../slices/restaurantSlice';
+import { urlFor } from '../sanity';
 
 export default function RestaurantScreen() {
     const { params } = useRoute();
@@ -14,7 +15,7 @@ export default function RestaurantScreen() {
     let item = params;
     const dispatch = useDispatch();
     useEffect(()=>{
-        if(item && item.id){
+        if(item && item._id){
             dispatch(setRestaurant({...item}))
         }
     },[])
@@ -24,7 +25,7 @@ export default function RestaurantScreen() {
             <StatusBar style = "light"/>
             <ScrollView>
                 <View className="relative">
-                    <Image className="w-full h-72" source={item.image} />
+                    <Image className="w-full h-72" source={{uri: urlFor(item.image).url()}} />
                     <TouchableOpacity className="absolute top-14 left-4 bg-gray-50 p-2 rounded-full shadow" onPress={() => navigation.goBack()}>
                         <Icon.ArrowLeft strokeWidth={3} stroke={themeColors.bgColor(1)} />
                     </TouchableOpacity>
@@ -37,7 +38,7 @@ export default function RestaurantScreen() {
                                 <Image source={require('../assets/images/papaJohns.jpg')} className="h-4 w-4" />
                                 <Text className="text-xs">
                                     <Text className="text-green-700">{item.rating}</Text>
-                                    <Text className="text-gray-700"> ({item.reviews} review)</Text> · <Text className="font-semibold text-gray-700">{item.category}</Text>
+                                    <Text className="text-gray-700"> ({item.reviews} review)</Text> · <Text className="font-semibold text-gray-700">{item?.type?.name}</Text>
                                 </Text>
                             </View>
                             <View className="flex-row items-center space-x-1">

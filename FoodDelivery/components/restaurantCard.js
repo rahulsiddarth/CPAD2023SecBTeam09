@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '../theme';
 import * as Icon from "react-native-feather";
+import { urlFor } from '../sanity';
 
 export default function ResturantCard({ item }) {
 
@@ -12,7 +13,7 @@ export default function ResturantCard({ item }) {
       onPress={() => navigation.navigate('Restaurant', { ...item })}
     >
       <View style={{ shadowColor: themeColors.bgColor(0.5), shadowRadius: 7 }} className="mr-6 bg-white rounded-3xl shadow-lg">
-        <Image className="h-36 w-64 rounded-t-3xl" source={item.image} />
+        <Image className="h-36 w-64 rounded-t-3xl" source={{uri: urlFor(item.image).url()}} />
 
         <View className="px-3 pb-4 space-y-2">
 
@@ -21,7 +22,7 @@ export default function ResturantCard({ item }) {
             <Image source={require('../assets/images/papaJohns.jpg')} className="h-4 w-4" />
             <Text className="text-xs">
               <Text className="text-green-700">{item.rating}</Text>
-              <Text className="text-gray-700"> ({item.reviews} review)</Text> · <Text className="font-semibold text-gray-700">{item.category}</Text>
+              <Text className="text-gray-700"> ({item.reviews} review)</Text> · <Text className="font-semibold text-gray-700">{item?.type?.name}</Text>
             </Text>
           </View>
           <View className="flex-row items-center space-x-1">
