@@ -15,12 +15,18 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.assignment.FoodDelivery"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB-rf_uEz1JAZ8wd6RcGAMCk_qcNS0RnME"
+        }
       },
       "package": "com.assignment.FoodDelivery"
     },

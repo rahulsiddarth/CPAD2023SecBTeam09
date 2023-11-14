@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectRestaurant } from '../slices/restaurantSlice';
 import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '../theme';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Icon from "react-native-feather";
 import { emptyCart } from '../slices/cartSlice';
 import { getDeliveryPartner } from '../constants';
@@ -21,6 +21,7 @@ export default function DeliveryScreen() {
     return (
         <View className="flex-1" >
             <MapView
+                provider={PROVIDER_GOOGLE}
                 initialRegion={{
                     latitude: restaurant.lat,
                     longitude: restaurant.lng,
