@@ -7,10 +7,11 @@ import { addToCart, removeFromCart, selectCartItemsById } from '../slices/cartSl
 import { urlFor } from '../sanity';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']);
+import { createSelector } from 'reselect';
 
 export default function DishRow({ item }) {
     const dispatch = useDispatch();
-    const totalItems = useSelector(state=> selectCartItemsById(state, item._id));
+    const totalItems = createSelector(state=> selectCartItemsById(state, item._id));
 
     const handleIncrease = ()=>{
         dispatch(addToCart({...item}))
