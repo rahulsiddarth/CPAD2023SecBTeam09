@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectRestaurant } from '../slices/restaurantSlice';
 import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '../theme';
-import MapView, { Marker } from 'react-native-maps';
 import * as Icon from "react-native-feather";
 import { emptyCart } from '../slices/cartSlice';
 import { getDeliveryPartner } from '../constants';
@@ -20,26 +19,9 @@ export default function DeliveryScreen() {
     }
     return (
         <View className="flex-1" >
-            <MapView
-                initialRegion={{
-                    latitude: restaurant.lat,
-                    longitude: restaurant.lng,
-                    latitudeDelta: 0.01,
-                    longitudeDelta: 0.01,
-                }}
-                className="flex-1"
-                mapType="standard"
-            >
-                <Marker
-                    coordinate={{
-                        latitude: restaurant.lat,
-                        longitude: restaurant.lng
-                    }}
-                    title={restaurant.name}
-                    description={restaurant.description}
-                    pinColor={themeColors.bgColor(1)}
-                />
-            </MapView>
+            <View className="flex-1">
+                <Image className="h-30 w-30" source={require('../assets/images/bikeGuy2.gif')} alt=""/>
+            </View>
             <View className="rounded-t-3xl -mt-12 bg-white relative">
                 <TouchableOpacity className="absolute right-4 top-2">
 
@@ -48,9 +30,9 @@ export default function DeliveryScreen() {
                     <View>
                         <Text className="text-lg text-gray-700 font-semibold">Estimated Arrival</Text>
                         <Text className="text-3xl font-extrabold text-gray-700">20-30 Minutes</Text>
-                        <Text className="mt-2 text-gray-700 font-semibold">Your Order is own its way</Text>
+                        <Text className="mt-2 text-gray-700 font-semibold">Your food is being prepared</Text>
                     </View>
-                    <Image className="h-24 w-24" source={require('../assets/images/bikeGuy2.gif')} />
+                    <Image className="h-24 w-24" source={require('../assets/images/bikeGuy.png')} alt=""/>
                 </View>
                 <View
                     style={{ backgroundColor: themeColors.bgColor(0.8) }}

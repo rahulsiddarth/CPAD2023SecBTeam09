@@ -73,11 +73,9 @@ export default function HomeScreen() {
                     <Icon.Sliders height={20} width={20} strokeWidth="2.5" stroke="white" />
                 </View>
                 <View>
-                <View>
                     <TouchableOpacity onPress={handleSignOut} style={{ backgroundColor: '#14b8a6' }} className="p-3 rounded-full">
                         <Icon.LogOut height={20} width={20} strokeWidth="2.5" stroke="white" />
                     </TouchableOpacity>
-                </View>
                 </View>
             </View>
 
