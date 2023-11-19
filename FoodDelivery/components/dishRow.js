@@ -9,7 +9,7 @@ import { createSelector } from 'reselect';
 
 export default function DishRow({ item }) {
     const dispatch = useDispatch();
-    const totalItems = createSelector(state=> selectCartItemsById(state, item._id));
+    const totalItems = useSelector(state=> selectCartItemsById(state, item._id));
 
     const handleIncrease = ()=>{
         dispatch(addToCart({...item}))
