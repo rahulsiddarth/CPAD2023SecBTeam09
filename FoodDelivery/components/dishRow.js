@@ -5,6 +5,8 @@ import * as Icon from "react-native-feather";
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, selectCartItemsById } from '../slices/cartSlice';
 import { urlFor } from '../sanity';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']);
 
 export default function DishRow({ item }) {
     const dispatch = useDispatch();
