@@ -23,11 +23,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyB-rf_uEz1JAZ8wd6RcGAMCk_qcNS0RnME"
-        }
-      },
       "package": "com.assignment.FoodDelivery"
     },
     "web": {
