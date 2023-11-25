@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, StatusBar, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import * as Icon from "react-native-feather";
 import { themeColors } from '../theme'
 import Categories from '../components/categories';
@@ -8,10 +8,19 @@ import FeaturedRow from '../components/featuredRow';
 import { auth } from '../firbase';
 import { useNavigation } from '@react-navigation/native';
 import { getFeaturedRestaurants } from '../api';
+import { Picker } from '@react-native-picker/picker';
 
 export default function HomeScreen() {
 
     const [featuredRestaurants, setFeaturedRestaurants] = useState([])
+    const [selectedLocation, setSelectedLocation] = useState(null);
+
+    const locations = [
+        { index:0, label: 'SAP Labs', value: 'SAP Labs', latitude: 12.9745, longitude: 77.5967},
+        { index:1, label: 'JP Nagar', value: 'JP Nagar', latitude: 4.567, longitude: 1.345},
+        { index:2, label: 'Hyderabad', value: 'Hyderabad', latitude: 17.3879977, longitude: 78.565194},
+      ];
+    
     const navigation = useNavigation();
     const handleSignOut = () => {
         auth
@@ -25,12 +34,19 @@ export default function HomeScreen() {
         navigation.setOptions({headerShown: false})
     }, [])
 
-    useEffect(()=>{
-        getFeaturedRestaurants().then(data=>{
-            // console.log("rahul", data)
+    useEffect(() => {
+        console.log("rahul" ,selectedLocation);
+        if (selectedLocation !== null && selectedLocation >= 0 ) {
+          getFeaturedRestaurants(locations[selectedLocation]).then(data => {
+            console.log(data);
             setFeaturedRestaurants(data);
-        })
-    },[])
+          });
+        }
+      }, [selectedLocation]);
+    
+    const handlePickerChange = (location) => {
+        setSelectedLocation(location);
+    };
 
     return (
         <SafeAreaView className="bg-white">
@@ -40,9 +56,17 @@ export default function HomeScreen() {
                 <View className="flex-row flex-1 items-center p-3 rounded-full border border-gray-300">
                     <Icon.Search height="25" width="25" stroke="gray" />
                     <TextInput placeholder='Restaurants' className="ml-2 flex-1" keyboardType='default' />
-                    <View className="flex-row items-center space-x-1 border-0 border-l-2 pl-2 border-l-gray-300">
+                    <View style={{ height: 20}} className="flex-row items-center space-x-1 border-0 border-l-2 pl-2 border-l-gray-300">
                         <Icon.MapPin height="20" width="20" stroke="gray" />
-                        <Text className="text-gray-600">SAP Labs, BLR</Text>
+                        <Picker
+                            selectedValue={selectedLocation}
+                            style={{ height: 50, width: 110 }}
+                            onValueChange={handlePickerChange}
+                            >
+                            {locations.map((item) => (
+                                <Picker.Item key={item.index} label={item.label} value={item.index} />
+                            ))}
+                        </Picker>
                     </View>
                 </View>
                 <View style={{ backgroundColor: themeColors.bgColor(1) }} className="p-3 rounded-full">
