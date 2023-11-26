@@ -31,6 +31,11 @@ export default {
       title: 'longitude of the restaurant',
    },
    {
+      title: 'locationcord',
+      name: 'location',
+      type: 'geopoint'
+   },
+   {
       name: 'address',
       type: 'string',
       title: 'Restaurant address',

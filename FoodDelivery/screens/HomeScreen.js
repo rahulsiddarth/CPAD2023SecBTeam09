@@ -16,9 +16,9 @@ export default function HomeScreen() {
     const [selectedLocation, setSelectedLocation] = useState(null);
 
     const locations = [
-        { index:0, label: 'SAP Labs', value: 'SAP Labs', latitude: 12.9745, longitude: 77.5967},
-        { index:1, label: 'JP Nagar', value: 'JP Nagar', latitude: 4.567, longitude: 1.345},
-        { index:2, label: 'Hyderabad', value: 'Hyderabad', latitude: 17.3879977, longitude: 78.565194},
+        { index:0, label: 'SAP Labs', value: 'SAP Labs', latitude: 12.9746, longitude: 77.6153, altitude: 910},
+        { index:1, label: 'JP Nagar', value: 'JP Nagar', latitude: 4.567, longitude: 1.345, altitude: 910},
+        { index:2, label: 'Hyderabad', value: 'Hyderabad', latitude: 17.3879977, longitude: 78.565194, altitude: 910},
       ];
     
     const navigation = useNavigation();
