@@ -51,3 +51,27 @@ export const getFeaturedRestaurantById = id=>{
         }[0]
     `, {id})
 }
+
+export const generateUniqueKey = () => {
+    // Generate a timestamp and add some random characters to make it unique
+    const timestamp = new Date().getTime();
+    const randomChars = Math.random().toString(36).substring(2, 4); // You can adjust the length of random characters
+  
+    return `${timestamp}${randomChars}`;
+  };
+
+export const saveOrders = async(restaurantName, itemsArr) => {
+
+    try {
+        const orderData = {
+          restaurantName: restaurantName,
+          items: [...itemsArr],
+        };
+        await sanityClient.create({ _type: 'orders', _key: generateUniqueKey(), ...orderData });
+        console.log({ _type: 'orders', _key: generateUniqueKey(), ...orderData })
+        console.log('Order successfully created!');
+      } catch (error) {
+        console.error('Error creating order:', error);
+      }
+}
+

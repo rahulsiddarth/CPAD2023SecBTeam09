@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectRestaurant } from '../slices/restaurantSlice';
 import { removeFromCart, selectCartItems, selectCartTotal } from '../slices/cartSlice';
 import { urlFor } from '../sanity';
+import { saveOrders, generateUniqueKey } from '../api';
 
 export default function CartScreen() {
         const restaurant = useSelector(state => selectRestaurant(state));
@@ -28,6 +29,16 @@ export default function CartScreen() {
             },{})
             setGroupedItems(items);
         },[cartItems])
+
+        const saveOrderData = async () => {
+            const itemsArr = [];
+            Object.entries(groupedItems).map(([key, items])=>{ itemsArr.push({itemName: items[0].name, quantity: items.length, "_key": generateUniqueKey()}) });
+
+            // console.log("itemsArr", itemsArr);
+            saveOrders(restaurant.name, itemsArr);
+            
+        };
+
     return(
         <View className = "bg-wh flex-1">
             {/*back button*/}
@@ -103,7 +114,10 @@ export default function CartScreen() {
                     <Text className="text-gray-700 font-extrabold">${deliveryFee+cartTotal}</Text>
                 </View>
                     <TouchableOpacity 
-                        onPress={() => navigation.navigate('OrderPreparing')}
+                        onPress={() => {
+                            saveOrderData();
+                            navigation.navigate('OrderPreparing')
+                        }}
                         style = {{backgroundColor: themeColors.bgColor(1)}} 
                         disabled={cartTotal==0}
                         className = "p-3 rounded-full">
